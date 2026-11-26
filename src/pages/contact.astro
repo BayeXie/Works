@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const description =
+  '向谢兆明发出工作邀约。本站不公布电话、邮箱或即时通讯账号。页面上的文字只留在你的设备里，不会进入任何收件箱。';
+---
+
+<BaseLayout title="联系 · 谢兆明" description={description}>
+  <main id="main" tabindex="-1">
+    <div class="wrap contact">
+      <p class="eyebrow">联系</p>
+      <h1>工作邀约</h1>
+      <p class="contact-lead">若你需要的是战役的视觉方向，可以从这里把话说清楚。</p>
+      <p class="contact-note">
+        本站不公布电话、邮箱或即时通讯账号。渠道在正式合作前另行确认。
+      </p>
+      <p class="contact-note">
+        下面的文字不会离开这台设备，也不会进入任何收件箱。生成之后，用你自己的渠道发出即可。
+      </p>
+
+      <div class="invite">
+        <form id="invite" hidden onsubmit="return false">
+          <div class="field">
+            <label for="name">你的名字 <span class="req">必填</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="80" aria-describedby="err-name" />
+            <p id="err-name" class="field-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="org">机构、品牌或剧组</label>
+            <input id="org" name="org" type="text" autocomplete="organization" maxlength="120" />
+          </div>
+          <div class="field">
+            <label for="topic">想谈的方向</label>
+            <select id="topic" name="topic">
+              <option>战役视觉</option>
+              <option>戏剧与内容</option>
+              <option>品牌与金融</option>
+              <option>其他</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="note">一段说明 <span class="req">必填</span></label>
+            <textarea id="note" name="note" maxlength="2000" aria-describedby="err-note"></textarea>
+            <p id="err-note" class="field-error" hidden></p>
+          </div>
+          <button class="button" type="button" id="invite-make">生成本地邀约</button>
+        </form>
+        <div id="invite-result" class="letter" hidden tabindex="-1" aria-live="polite"></div>
+      </div>
+      <noscript>
+        <p class="contact-note">
+          整理工具需要脚本，并且不会把内容发到任何服务器。脚本不可用时，请用你们已经确认的渠道直接发出邀约。
+        </p>
+      </noscript>
+    </div>
+  </main>
+  <script is:inline>
+    document.getElementById('invite')?.removeAttribute('hidden');
+  </script>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#invite');
+  const result = document.querySelector<HTMLElement>('#invite-result');
+  const make = document.querySelector<HTMLButtonElement>('#invite-make');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+
+  function field(id: string) {
+    return document.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('#' + id);
+  }
+
+  function setError(id: string, message: string) {
+    const error = document.querySelector<HTMLElement>('#err-' + id);
+    const input = field(id);
+    if (!error || !input) return;
+    if (message) {
+      error.hidden = false;
+      error.textContent = message;
+      input.setAttribute('aria-invalid', 'true');
+    } else {
+      error.hidden = true;
+      error.textContent = '';
+      input.removeAttribute('aria-invalid');
+    }
+  }
+
+  make?.addEventListener('click', () => {
+    const name = field('name')?.value.trim() ?? '';
+    const org = field('org')?.value.trim() ?? '';
+    const topic = field('topic')?.value.trim() ?? '';
+    const note = field('note')?.value.trim() ?? '';
+
+    const nameOk = name.length > 0;
+    const noteOk = note.length > 0;
+    setError('name', nameOk ? '' : '请写下你的名字。');
+    setError('note', noteOk ? '' : '请写下想说的话。');
+    if (!nameOk || !noteOk || !result) {
+      (nameOk ? field('note') : field('name'))?.focus();
+      return;
+    }
+
+    const orgLine = org ? `，来自${org}` : '';
+    const text = `工作邀约\n\n我是${name}${orgLine}。\n想谈的方向：${topic}。\n\n${note}\n\n—— 写给谢兆明，创意总监`;
+
+    result.hidden = false;
+    result.replaceChildren();
+
+    const heading = document.createElement('h2');
+    heading.textContent = '尚未发送';
+
+    const noteEl = document.createElement('p');
+    noteEl.className = 'letter-note';
+    noteEl.textContent = '下面这段只在这台设备上。复制之后，用你自己的渠道发出。本页不保存、不转发。';
+
+    const body = document.createElement('pre');
+    body.tabIndex = 0;
+    body.textContent = text;
+
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'button button-ink';
+    copy.textContent = '复制这段文字';
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(text);
+        copy.textContent = '已复制';
+      } catch {
+        body.focus();
+        copy.textContent = '请手动选择并复制';
+      }
+    });
+
+    result.append(heading, noteEl, body, copy);
+    result.scrollIntoView({ block: 'nearest' });
+    result.focus();
+  });
+</script>

@@ -1,0 +1,17 @@
+---
+import { type CaseSlug, nextCase } from '../data/site';
+
+interface Props {
+  slug: CaseSlug;
+}
+
+const next = nextCase(Astro.props.slug);
+---
+
+<nav class="wrap pager" aria-label="其他作品">
+  <a class="pager-next" href={next.href}>
+    <span class="pager-kicker eyebrow">下一场</span>
+    <span class="pager-title">{next.title}</span>
+  </a>
+  <a class="pager-all" href="/work/">全部作品</a>
+</nav>

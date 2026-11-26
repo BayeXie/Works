@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Frame from '../components/Frame.astro';
+import work from '../assets/images/portrait-work.jpg';
+import formal from '../assets/images/portrait-formal.png';
+
+const description =
+  '关于谢兆明，创意总监。从南京艺术学院影视动画出发，经睿宏、天蛙、狮迈，到 MCN 设计组长。一条把画面做成战役方向的路径。';
+
+const person = {
+  '@type': 'Person',
+  name: '谢兆明',
+  alternateName: 'Xie Zhaoming',
+  jobTitle: '创意总监',
+  description: '以影像与视觉系统，把一场战役从概念做到可被触碰的接触点。',
+  alumniOf: { '@type': 'CollegeOrUniversity', name: '南京艺术学院' },
+  url: new URL('/about/', Astro.site).href,
+};
+---
+
+<BaseLayout title="关于 · 谢兆明" description={description} jsonLd={person}>
+  <main id="main" tabindex="-1">
+    <header class="wrap about-lead">
+      <p class="eyebrow">关于</p>
+      <h1>谢兆明</h1>
+      <p class="about-statement">
+        先决定一场战役要被人怎样看见，再把概念做成接触点。
+      </p>
+    </header>
+
+    <section class="wrap about-plate" aria-labelledby="portrait-title">
+      <Frame
+        src={work}
+        alt="谢兆明站在浅色墙前，穿黑色上衣，双手插在口袋里，看向镜头。"
+        widths={[480, 800, 1200, 1600]}
+        sizes="(min-width: 880px) 46vw, 92vw"
+        priority
+      />
+      <div>
+        <h2 id="portrait-title" class="sr-only">肖像与路径</h2>
+        <p>
+          他从影视动画开始学画面，之后在商业项目、与朋友合办的公司、创意热店和内容团队里，把同一件事做深：视觉方向。现在以此接新的合作。
+        </p>
+        <p class="follow">下面是一条路径，不是职务清单。</p>
+      </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="path-title">
+      <div class="path">
+        <h2 id="path-title">路径</h2>
+        <p class="path-intro">一条往前的路径，不是职务堆砌。</p>
+        <ol>
+          <li>
+            <p class="when">学业</p>
+            <div>
+              <h3>南京艺术学院</h3>
+              <p>影视动画。影像和造型是起点。</p>
+            </div>
+          </li>
+          <li>
+            <p class="when">
+              <time datetime="2012-02">2012.02</time> — <time datetime="2017-09">2017.09</time>
+            </p>
+            <div>
+              <h3>睿宏</h3>
+              <p>美术指导 / 概念原画。在商业项目里把画面做实。</p>
+            </div>
+          </li>
+          <li>
+            <p class="when">
+              <time datetime="2017-11">2017.11</time> — <time datetime="2021-03">2021.03</time>
+            </p>
+            <div>
+              <h3>天蛙</h3>
+              <p>与朋友合办。从把一张画画完，走到为一间创作公司共同负责。</p>
+            </div>
+          </li>
+          <li>
+            <p class="when">
+              <time datetime="2021-04">2021.04</time> — <time datetime="2024-04">2024.04</time>
+            </p>
+            <div>
+              <h3>狮迈</h3>
+              <p>资深美术指导。在创意热店里把视觉方向做深。</p>
+            </div>
+          </li>
+          <li>
+            <p class="when">
+              <time datetime="2024-09">2024.09</time> — <time datetime="2026-10">2026.10</time>
+            </p>
+            <div>
+              <h3>MCN</h3>
+              <p>设计组长，服务账号慧慧周与柳夜熙。这一段已经结束。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="presence" aria-labelledby="now-title">
+      <div class="wrap presence-grid">
+        <div>
+          <h2 id="now-title">现在</h2>
+          <p>这一段已在 2026 年 10 月结束。目前以创意总监的身份看新的合作。</p>
+          <ul class="close-links">
+            <li><a href="/work/">看作品</a></li>
+            <li><a href="/contact/">工作邀约</a></li>
+          </ul>
+        </div>
+        <Frame
+          src={formal}
+          alt="谢兆明的肖像：白衬衫、深色领结，置于深色背景中。"
+          widths={[480, 800, 1200, 1400]}
+          sizes="(min-width: 880px) 36vw, 80vw"
+          caption="肖像"
+        />
+      </div>
+    </section>
+  </main>
+</BaseLayout>
