@@ -1,0 +1,38 @@
+---
+const path = Astro.url.pathname;
+const isHome = path === '/';
+const isWorkIndex = path === '/work/';
+const inWork = path.startsWith('/work/');
+const isAbout = path === '/about/';
+const isContact = path === '/contact/';
+
+const items = [
+  { href: '/work/', label: '作品', current: isWorkIndex, section: inWork && !isWorkIndex },
+  { href: '/about/', label: '关于', current: isAbout, section: false },
+  { href: '/contact/', label: '联系', current: isContact, section: false },
+];
+---
+
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="/" aria-current={isHome ? 'page' : undefined}>谢兆明</a>
+    <nav class="nav" aria-label="主导航">
+      <ul>
+        {
+          items.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={item.current ? 'page' : undefined}
+                class:list={[{ 'is-section': item.section }]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

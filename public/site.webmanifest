@@ -1,0 +1,15 @@
+{
+  "name": "谢兆明 · 创意总监",
+  "short_name": "谢兆明",
+  "lang": "zh-CN",
+  "display": "browser",
+  "background_color": "#0c0b0a",
+  "theme_color": "#0c0b0a",
+  "icons": [
+    {
+      "src": "/apple-touch.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

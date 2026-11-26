@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Frame from '../../components/Frame.astro';
+import Pager from '../../components/Pager.astro';
+import kv from '../../assets/images/xingdong-kv.jpg';
+import year from '../../assets/images/xingdong-newyear.jpg';
+import card from '../../assets/images/xplus-card.jpg';
+
+const title = '兴动全球 · 谢兆明';
+const description =
+  '兴业银行「兴动全球」的战役视觉系统：行李箱主视觉、系列画面，以及同一体系中的 X+ 青年卡。不陈述银行数据或奖项。';
+
+const work = {
+  '@type': 'CreativeWork',
+  name: '兴动全球',
+  alternativeHeadline: '兴业银行 · 兴业生活',
+  inLanguage: 'zh-CN',
+  creator: { '@type': 'Person', name: '谢兆明' },
+  about: '兴业银行「兴动全球」战役视觉系统，含主视觉、系列画面与 X+ 青年卡主视觉。',
+};
+---
+
+<BaseLayout title={title} description={description} ogType="article" jsonLd={work}>
+  <main id="main" tabindex="-1">
+    <header class="wrap case-head">
+      <nav class="crumb" aria-label="面包屑">
+        <ol>
+          <li><a href="/">首页</a> <span aria-hidden="true">/</span></li>
+          <li><a href="/work/">作品</a> <span aria-hidden="true">/</span></li>
+          <li aria-current="page">兴动全球</li>
+        </ol>
+      </nav>
+      <p class="eyebrow">作品 02 · 兴业银行</p>
+      <h1>兴动全球</h1>
+      <p class="case-lede">
+        境外消费返现很容易做成一张利率表。这套视觉把它做成一个可以走进去的世界。
+      </p>
+    </header>
+
+    <div class="stage">
+      <div class="wrap">
+        <Frame
+          src={kv}
+          alt="兴业银行「兴动全球」主视觉海报。打开的蓝色行李箱里有沙滩、帆船、埃菲尔铁塔和相机，周围是写着返现比例的气球。画面有兴业生活与兴业银行标识。"
+          widths={[480, 720, 1080]}
+          sizes="(min-width: 880px) 34vw, 86vw"
+          priority
+          caption="主视觉 · 行李箱里的境外消费世界"
+        />
+      </div>
+    </div>
+
+    <div class="wrap case-grid">
+      <div class="prose">
+        <h2>方向</h2>
+        <p>
+          主视觉把行李箱打开成一座小剧场。沙滩、帆船、铁塔和返现气球站在同一个地面上。数字进了世界，而不是贴在角落。
+        </p>
+        <p>
+          系列画面沿同一条航线换季节。新年的机舱仍然把落点放回「兴动全球」：人在旅途里，福利和目的地在同一扇窗后。
+        </p>
+        <h2>延伸</h2>
+        <p>
+          X+ 青年卡是同一客户视觉体系里的另一张主视觉。角色、卡面和山野语气更轻，识别仍回到兴业生活。放在一起，是一套世界如何延伸，不是两则优惠被说成同一件事，也不是散落的气氛图。
+        </p>
+      </div>
+      <aside class="case-aside">
+        <h2>署名</h2>
+        <dl class="credits">
+          <div>
+            <dt>委托</dt>
+            <dd>兴业银行 · 兴业生活</dd>
+          </div>
+          <div>
+            <dt>项目</dt>
+            <dd>「兴动全球」战役视觉</dd>
+          </div>
+          <div>
+            <dt>职责</dt>
+            <dd>战役视觉系统</dd>
+          </div>
+          <div>
+            <dt>画面</dt>
+            <dd>主视觉、系列、X+ 青年卡</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="wrap stack">
+      <Frame
+        src={year}
+        alt="「兴动全球」系列海报。新年机舱内，一家三口望向窗外的境外城市，暖色灯笼与返现卡片环绕，下方是兴动全球标识与活动说明。"
+        widths={[480, 720, 1080]}
+        sizes="(min-width: 880px) 34vw, 86vw"
+        caption="系列 · 新年旅途，落点仍是兴动全球"
+      />
+      <Frame
+        class="land"
+        src={card}
+        alt="兴业银行 X+ 青年信用卡主视觉。长颈鹿与斑马在山野间奔跑，旁边是两张印有同一角色的无界卡，标题为青春有 X 种可能。"
+        widths={[640, 1100, 1600, 1920]}
+        sizes="100vw"
+        caption="同一视觉体系 · X+ 青年卡"
+      />
+    </div>
+    <Pager slug="xingdong-global" />
+  </main>
+</BaseLayout>
