@@ -19,34 +19,30 @@ const person = {
 
 <BaseLayout title="关于 · 谢兆明" description={description} jsonLd={person}>
   <main id="main" tabindex="-1">
-    <header class="about-lead edge">
-      <div>
+    <section class="about-open" aria-labelledby="about-title">
+      <div class="about-copy">
         <p class="meta">关于</p>
-        <h1>谢兆明</h1>
-        <p class="opening-role">创意总监</p>
+        <p class="about-who">
+          <span>谢兆明</span>
+          <span>创意总监</span>
+        </p>
+        <h1 id="about-title">
+          先决定一场战役<br />要被人怎样看见，<br />再把概念做成接触点。
+        </h1>
+        <p class="about-bio">
+          他从影视动画开始学画面，之后在商业项目、与朋友合办的公司、创意热店和内容团队里，把同一件事做深：视觉方向。现在以此接新的合作。
+        </p>
       </div>
-      <p class="about-statement">
-        先决定一场战役<br />要被人怎样看见，<br />再把概念做成接触点。
-      </p>
-    </header>
-
-    <section class="about-portrait edge" aria-labelledby="portrait-title">
       <Frame
+        class="about-still"
         src={work}
         alt="谢兆明站在浅色墙前，穿黑色上衣，双手插在口袋里，看向镜头。"
         widths={[480, 800, 1200, 1600]}
-        sizes="(min-width: 880px) 42vw, 100vw"
-        focus="50% 22%"
-        ratio="4 / 5"
+        sizes="(min-width: 880px) 54vw, 100vw"
+        focus="50% 18%"
+        fill
         priority
       />
-      <div>
-        <h2 id="portrait-title" class="sr-only">肖像与路径</h2>
-        <p>
-          他从影视动画开始学画面，之后在商业项目、与朋友合办的公司、创意热店和内容团队里，把同一件事做深：视觉方向。现在以此接新的合作。
-        </p>
-        <p class="follow">下面是一条路径，不是职务清单。</p>
-      </div>
     </section>
 
     <section class="edge" aria-labelledby="path-title">

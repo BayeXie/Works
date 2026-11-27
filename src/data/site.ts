@@ -24,7 +24,7 @@ export const cases = [
     title: '兴动全球',
     client: '兴业银行',
     kind: '兴业生活',
-    line: '境外返现被做成一个可以走进去的世界，而不是一张利率表。',
+    line: '境外返现被做成一个可以走进去的世界，而不是一张利\u2060率\u2060表。',
     href: '/work/xingdong-global/',
   },
   {

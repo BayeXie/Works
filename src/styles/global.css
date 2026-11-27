@@ -544,7 +544,7 @@ h3,
 }
 
 .case-lede {
-  max-width: 16em;
+  max-width: 14em;
   font-family: var(--sans);
   font-size: 1.125rem;
   font-weight: 400;
@@ -969,7 +969,7 @@ h3,
 }
 
 .page-intro,
-.about-lead,
+.about-copy,
 .contact-open,
 .missing {
   container-type: inline-size;
@@ -980,7 +980,6 @@ h3,
 }
 
 .page-intro h1,
-.about-lead h1,
 .contact h1 {
   margin-top: 0.45rem;
   letter-spacing: 0;
@@ -1074,51 +1073,59 @@ h3,
   border-bottom: 1px solid var(--brass);
 }
 
-.about-lead {
-  min-height: calc(100svh - var(--header));
+.about-open {
+  display: grid;
+  background: var(--bg);
+}
+
+.about-copy {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-  padding-top: clamp(1.25rem, 4vh, 2.5rem);
-  padding-bottom: clamp(1.5rem, 5vh, 3rem);
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: clamp(1.75rem, 5vh, 3rem) var(--edge) clamp(1.5rem, 4vh, 2.5rem);
 }
 
-.about-lead h1 {
-  font-size: min(22rem, calc(100cqi / 3.45));
-  padding-bottom: 0.3em;
-}
-
-.about-statement {
-  align-self: flex-end;
-  text-align: right;
-  margin-top: 0;
-  max-width: 12em;
+.about-who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.9rem;
+  margin: 0;
   font-family: var(--sans);
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.65;
+  font-size: 0.875rem;
+  font-weight: 500;
   letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--brass-2);
 }
 
-.about-portrait {
-  display: grid;
-  gap: 1.25rem;
-  align-items: center;
-  padding-block: clamp(2rem, 6vw, 4rem);
+.about-who span:first-child {
+  color: var(--paper);
 }
 
-.about-portrait .frame {
-  width: 100%;
+.about-open h1 {
+  margin: 0.15rem 0 0;
+  font-size: min(4.5rem, calc(100cqi / 10.6));
+  line-height: 1.12;
+  letter-spacing: 0;
+  white-space: normal;
+  text-wrap: wrap;
+  padding-bottom: 0.08em;
 }
 
-.about-portrait p {
-  max-width: 28em;
+.about-bio {
+  max-width: 24em;
+  margin: 0.55rem 0 0;
   color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
 }
 
-.about-portrait .follow {
-  margin-top: 1rem;
+.about-still.frame,
+.about-still .crop-media {
+  height: 78vh;
+  min-height: 78vh;
 }
 
 .path {
@@ -1220,11 +1227,22 @@ time {
 }
 
 .contact-board {
+  scroll-margin-top: var(--header);
+  padding-top: clamp(2.25rem, 6vh, 3.5rem);
   padding-bottom: clamp(4rem, 9vw, 6.5rem);
 }
 
-.contact-board .contact-note {
+.contact-notes {
+  display: grid;
+  gap: 0.45rem;
   max-width: 28em;
+}
+
+.contact-notes p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.7;
 }
 
 .invite {
@@ -1425,10 +1443,20 @@ time {
     top: calc(var(--header) + 1.5rem);
   }
 
-  .about-portrait {
-    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.7fr);
-    gap: clamp(1.5rem, 4vw, 4rem);
-    align-items: end;
+  .about-open {
+    grid-template-columns: minmax(18rem, 0.44fr) minmax(0, 0.56fr);
+    min-height: calc(100svh - var(--header));
+    align-items: stretch;
+  }
+
+  .about-copy {
+    padding-bottom: clamp(2rem, 6vh, 3.5rem);
+  }
+
+  .about-still.frame,
+  .about-still .crop-media {
+    height: 100%;
+    min-height: calc(100svh - var(--header));
   }
 
   .path li {
