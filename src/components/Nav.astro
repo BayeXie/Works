@@ -1,22 +1,28 @@
 ---
+import { href } from '../lib/path';
+
 const path = Astro.url.pathname;
-const isHome = path === '/';
-const isWorkIndex = path === '/work/';
-const inWork = path.startsWith('/work/');
-const isAbout = path === '/about/';
-const isContact = path === '/contact/';
+const home = href('/');
+const work = href('/work/');
+const about = href('/about/');
+const contact = href('/contact/');
+const isHome = path === home;
+const isWorkIndex = path === work;
+const inWork = path.startsWith(work);
+const isAbout = path === about;
+const isContact = path === contact;
 
 const items = [
-  { href: '/work/', label: '作品', current: isWorkIndex, section: inWork && !isWorkIndex },
-  { href: '/about/', label: '关于', current: isAbout, section: false },
-  { href: '/contact/', label: '联系', current: isContact, section: false },
+  { href: work, label: '作品', current: isWorkIndex, section: inWork && !isWorkIndex },
+  { href: about, label: '关于', current: isAbout, section: false },
+  { href: contact, label: '联系', current: isContact, section: false },
 ];
 ---
 
 <a class="skip" href="#main">跳到正文</a>
 <header class="site-header">
   <div class="bar">
-    <a class="brand" href="/" aria-current={isHome ? 'page' : undefined}>谢兆明</a>
+    <a class="brand" href={home} aria-current={isHome ? 'page' : undefined}>谢兆明</a>
     <nav class="nav" aria-label="主导航">
       <ul>
         {

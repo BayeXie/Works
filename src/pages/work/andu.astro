@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CaseAndu from '../../components/CaseAndu.astro';
 import Pager from '../../components/Pager.astro';
+import { href } from '../../lib/path';
 
 const title = '暗渡 · 谢兆明';
 const description =
@@ -22,8 +23,8 @@ const work = {
     <CaseAndu heading="h1" priority>
       <nav slot="crumb" class="crumb" aria-label="面包屑">
         <ol>
-          <li><a href="/">首页</a> <span aria-hidden="true">/</span></li>
-          <li><a href="/work/">作品</a> <span aria-hidden="true">/</span></li>
+          <li><a href={href('/')}>首页</a> <span aria-hidden="true">/</span></li>
+          <li><a href={href('/work/')}>作品</a> <span aria-hidden="true">/</span></li>
           <li aria-current="page">暗渡</li>
         </ol>
       </nav>

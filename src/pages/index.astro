@@ -6,6 +6,7 @@ import CaseBarber from '../components/CaseBarber.astro';
 import CaseXingdong from '../components/CaseXingdong.astro';
 import CaseAndu from '../components/CaseAndu.astro';
 import { site } from '../data/site';
+import { absolute, href } from '../lib/path';
 import head from '../assets/images/head-mark.jpg';
 
 const person = {
@@ -14,7 +15,7 @@ const person = {
   alternateName: site.nameEn,
   jobTitle: site.role,
   description: site.positioning,
-  url: new URL('/', Astro.site).href,
+  url: absolute('/'),
   alumniOf: {
     '@type': 'CollegeOrUniversity',
     name: '南京艺术学院',
@@ -61,8 +62,8 @@ const person = {
       <h2 id="close-title">合作</h2>
       <p>看完三场，如果方向对上了，可以写一封工作邀约。</p>
       <ul class="close-links">
-        <li><a href="/about/">关于</a></li>
-        <li><a href="/contact/">联系</a></li>
+        <li><a href={href('/about/')}>关于</a></li>
+        <li><a href={href('/contact/')}>联系</a></li>
       </ul>
     </section>
   </main>

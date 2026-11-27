@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { href } from '../lib/path';
 ---
 
 <BaseLayout title="没有这一页 · 谢兆明" description="这个地址没有对应的页面。" robots="noindex">
@@ -9,8 +10,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h1>没有这一页</h1>
       <p>链接可能已更换。可以从作品或首页继续。</p>
       <ul class="missing-links">
-        <li><a href="/work/">作品</a></li>
-        <li><a href="/">首页</a></li>
+        <li><a href={href('/work/')}>作品</a></li>
+        <li><a href={href('/')}>首页</a></li>
       </ul>
     </div>
   </main>

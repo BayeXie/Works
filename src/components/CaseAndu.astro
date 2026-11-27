@@ -1,5 +1,6 @@
 ---
 import Frame from './Frame.astro';
+import { href } from '../lib/path';
 import still from '../assets/images/andu.jpg';
 
 interface Props {
@@ -33,7 +34,7 @@ const Sub = heading === 'h1' ? 'h2' : 'h3';
         <span>短剧 · 海报</span>
       </p>
       <Tag id="andu-title" class="display-title display-title-film">
-        {linked ? <a href="/work/andu/">暗渡</a> : '暗渡'}
+        {linked ? <a href={href('/work/andu/')}>暗渡</a> : '暗渡'}
       </Tag>
       <p class="poster-latin-label">海报原文</p>
       <p class="poster-latin" lang="en">The Hidden Gambit</p>
@@ -63,7 +64,7 @@ const Sub = heading === 'h1' ? 'h2' : 'h3';
       {
         linked && (
           <p class="case-more">
-            <a class="more" href="/work/andu/">
+            <a class="more" href={href('/work/andu/')}>
               看这一场<span class="sr-only">：暗渡</span>
             </a>
           </p>

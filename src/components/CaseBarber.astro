@@ -1,5 +1,6 @@
 ---
 import Frame from './Frame.astro';
+import { href } from '../lib/path';
 import tony from '../assets/images/barber-tony.jpg';
 import asong from '../assets/images/barber-asong.jpg';
 
@@ -22,7 +23,7 @@ const Sub = heading === 'h1' ? 'h2' : 'h3';
       <span>开心麻花 · 舞台剧</span>
     </p>
     <Tag id="barber-title" class="display-title display-title-play">
-      {linked ? <a href="/work/crazy-barbershop/">疯狂理发店</a> : '疯狂理发店'}
+      {linked ? <a href={href('/work/crazy-barbershop/')}>疯狂理发店</a> : '疯狂理发店'}
     </Tag>
     <p class="case-kicker">战役与视觉指导 · 主视觉与角色海报</p>
   </div>
@@ -100,7 +101,7 @@ const Sub = heading === 'h1' ? 'h2' : 'h3';
   {
     linked && (
       <p class="edge case-more">
-        <a class="more" href="/work/crazy-barbershop/">
+        <a class="more" href={href('/work/crazy-barbershop/')}>
           看这一场<span class="sr-only">：疯狂理发店</span>
         </a>
       </p>

@@ -1,5 +1,6 @@
 ---
 import Frame from './Frame.astro';
+import { href } from '../lib/path';
 import kv from '../assets/images/xingdong-kv.jpg';
 import year from '../assets/images/xingdong-newyear.jpg';
 import card from '../assets/images/xplus-card.jpg';
@@ -23,7 +24,7 @@ const Sub = heading === 'h1' ? 'h2' : 'h3';
       <span>兴业银行 · 兴业生活</span>
     </p>
     <Tag id="xingdong-title" class="display-title display-title-system">
-      {linked ? <a href="/work/xingdong-global/">兴动全球</a> : '兴动全球'}
+      {linked ? <a href={href('/work/xingdong-global/')}>兴动全球</a> : '兴动全球'}
     </Tag>
     <p class="case-lede">
       境外消费返现，<br />很容易做成一张利率表。<br />这套视觉把它做成<br />一个可以走进去的世界。
@@ -92,7 +93,7 @@ const Sub = heading === 'h1' ? 'h2' : 'h3';
   {
     linked && (
       <p class="edge case-more">
-        <a class="more" href="/work/xingdong-global/">
+        <a class="more" href={href('/work/xingdong-global/')}>
           看这一场<span class="sr-only">：兴动全球</span>
         </a>
       </p>

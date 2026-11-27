@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-开发服务器默认在 `http://localhost:4321`。
+开发服务器默认在 `http://localhost:4321/Works/`。
 
 构建与预览：
 
@@ -24,9 +24,9 @@ npm run preview
 
 构建结果在 `dist/`。把它交给任何静态托管即可。
 
-## 上线前
+## 上线
 
-`astro.config.mjs` 里的 `site` 目前是占位来源 `https://bayexie.github.io`。换成正式域名后再构建，这样规范链接、Open Graph 和站点地图才会指向正确地址。`public/robots.txt` 里的 Sitemap 地址也要一起改。
+站点发布在 GitHub Pages 项目页：`https://bayexie.github.io/Works/`。`astro.config.mjs` 的 `site` 是 `https://bayexie.github.io`，`base` 是 `/Works/`。推送到 `main` 后，`.github/workflows/pages.yml` 会构建并发布。仓库公开和开启 Pages 在仓库设置里完成。
 
 ## 页面
 

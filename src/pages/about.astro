@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Frame from '../components/Frame.astro';
 import work from '../assets/images/portrait-work.jpg';
+import { absolute, href } from '../lib/path';
 
 const description =
   '关于谢兆明，创意总监。从南京艺术学院影视动画出发，经睿宏、天蛙、狮迈，到 MCN 设计组长。一条把画面做成战役方向的路径。';
@@ -13,7 +14,7 @@ const person = {
   jobTitle: '创意总监',
   description: '以影像与视觉系统，把一场战役从概念做到可被触碰的接触点。',
   alumniOf: { '@type': 'CollegeOrUniversity', name: '南京艺术学院' },
-  url: new URL('/about/', Astro.site).href,
+  url: absolute('/about/'),
 };
 ---
 
@@ -101,8 +102,8 @@ const person = {
       <h2 id="now-title">现在</h2>
       <p>这一段已在 2026 年 10 月结束。目前以创意总监的身份看新的合作。</p>
       <ul class="close-links">
-        <li><a href="/work/">看作品</a></li>
-        <li><a href="/contact/">工作邀约</a></li>
+        <li><a href={href('/work/')}>看作品</a></li>
+        <li><a href={href('/contact/')}>工作邀约</a></li>
       </ul>
     </section>
   </main>
