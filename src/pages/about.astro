@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Frame from '../components/Frame.astro';
 import work from '../assets/images/portrait-work.jpg';
-import formal from '../assets/images/portrait-formal.png';
 
 const description =
   '关于谢兆明，创意总监。从南京艺术学院影视动画出发，经睿宏、天蛙、狮迈，到 MCN 设计组长。一条把画面做成战役方向的路径。';
@@ -20,20 +19,21 @@ const person = {
 
 <BaseLayout title="关于 · 谢兆明" description={description} jsonLd={person}>
   <main id="main" tabindex="-1">
-    <header class="wrap about-lead">
-      <p class="eyebrow">关于</p>
+    <header class="about-lead edge">
+      <p class="meta">关于</p>
       <h1>谢兆明</h1>
-      <p class="about-statement">
-        先决定一场战役要被人怎样看见，再把概念做成接触点。
-      </p>
+      <p class="opening-role">创意总监</p>
+      <p class="about-statement">先决定一场战役要被人怎样看见，再把概念做成接触点。</p>
     </header>
 
-    <section class="wrap about-plate" aria-labelledby="portrait-title">
+    <section class="about-portrait edge" aria-labelledby="portrait-title">
       <Frame
         src={work}
         alt="谢兆明站在浅色墙前，穿黑色上衣，双手插在口袋里，看向镜头。"
         widths={[480, 800, 1200, 1600]}
-        sizes="(min-width: 880px) 46vw, 92vw"
+        sizes="(min-width: 880px) 42vw, 100vw"
+        focus="50% 22%"
+        ratio="4 / 5"
         priority
       />
       <div>
@@ -45,7 +45,7 @@ const person = {
       </div>
     </section>
 
-    <section class="wrap" aria-labelledby="path-title">
+    <section class="edge" aria-labelledby="path-title">
       <div class="path">
         <h2 id="path-title">路径</h2>
         <p class="path-intro">一条往前的路径，不是职务堆砌。</p>
@@ -97,24 +97,13 @@ const person = {
       </div>
     </section>
 
-    <section class="presence" aria-labelledby="now-title">
-      <div class="wrap presence-grid">
-        <div>
-          <h2 id="now-title">现在</h2>
-          <p>这一段已在 2026 年 10 月结束。目前以创意总监的身份看新的合作。</p>
-          <ul class="close-links">
-            <li><a href="/work/">看作品</a></li>
-            <li><a href="/contact/">工作邀约</a></li>
-          </ul>
-        </div>
-        <Frame
-          src={formal}
-          alt="谢兆明的肖像：白衬衫、深色领结，置于深色背景中。"
-          widths={[480, 800, 1200, 1400]}
-          sizes="(min-width: 880px) 36vw, 80vw"
-          caption="肖像"
-        />
-      </div>
+    <section class="now edge" aria-labelledby="now-title">
+      <h2 id="now-title">现在</h2>
+      <p>这一段已在 2026 年 10 月结束。目前以创意总监的身份看新的合作。</p>
+      <ul class="close-links">
+        <li><a href="/work/">看作品</a></li>
+        <li><a href="/contact/">工作邀约</a></li>
+      </ul>
     </section>
   </main>
 </BaseLayout>

@@ -1,0 +1,101 @@
+---
+import Frame from './Frame.astro';
+import tony from '../assets/images/barber-tony.jpg';
+import asong from '../assets/images/barber-asong.jpg';
+
+interface Props {
+  heading?: 'h1' | 'h2';
+  linked?: boolean;
+  priority?: boolean;
+}
+
+const { heading = 'h2', linked = false, priority = false } = Astro.props;
+const Tag = heading;
+const Sub = heading === 'h1' ? 'h2' : 'h3';
+---
+
+<section class="case case-theatre" aria-labelledby="barber-title">
+  <div class="case-opener">
+    <slot name="crumb" />
+    <p class="meta">
+      <span class="num">01</span>
+      <span>开心麻花 · 舞台剧</span>
+    </p>
+    <Tag id="barber-title" class="display-title display-title-play">
+      {linked ? <a href="/work/crazy-barbershop/">疯狂理发店</a> : '疯狂理发店'}
+    </Tag>
+    <p class="case-kicker">战役与视觉指导 · 主视觉与角色海报</p>
+  </div>
+
+  <div class="stagger">
+    <Frame
+      class="stagger-a"
+      src={tony}
+      alt="《疯狂理发店》角色海报。冯康杰饰演 Tony，绿衫与背带短裤，手持超大金色剪刀，背景是红砖墙、理发椅和棋盘地面。右侧铜框内竖排演员姓名。"
+      widths={[480, 800, 1100, 1400]}
+      sizes="(min-width: 900px) 46vw, 86vw"
+      focus="44% 16%"
+      ratio="3 / 4"
+      priority={priority}
+      caption="角色海报 · 冯康杰 饰 Tony"
+    />
+    <Frame
+      class="stagger-b"
+      src={asong}
+      alt="《疯狂理发店》角色海报。张淞饰演阿淞，灰色西装，手持巨大铜喇叭，背景是红墙、木砖与棋盘地面。右侧铜框内竖排演员姓名。"
+      widths={[480, 800, 1100, 1400]}
+      sizes="(min-width: 900px) 38vw, 72vw"
+      focus="48% 24%"
+      ratio="3 / 4.5"
+      caption="角色海报 · 张淞 饰 阿淞"
+    />
+  </div>
+
+  <div class="case-foot edge">
+    <div class="prose">
+      <Sub>方向</Sub>
+      <p>
+        角色海报共用一套店面语法：棋盘地面、暖砖、铜框，以及大过日常的道具。剪刀和喇叭把人从演员变成招贴。两张海报可以分开传播，拼在一起仍是同一家店。
+      </p>
+      <p>名字竖排在铜边里，像戏单，也像贴在街角的卡司板。系统先于单张画面的花样。</p>
+      <Sub>接触点</Sub>
+      <p>主视觉与角色海报。这场战役的判断，落在这些可以被贴上墙、被单独转发的画面上。</p>
+    </div>
+    <aside class="case-aside">
+      <Sub>署名</Sub>
+      <dl class="credits">
+        <div>
+          <dt>委托</dt>
+          <dd>开心麻花</dd>
+        </div>
+        <div>
+          <dt>项目</dt>
+          <dd>舞台剧《疯狂理发店》</dd>
+        </div>
+        <div>
+          <dt>职责</dt>
+          <dd>战役与视觉指导</dd>
+        </div>
+        <div>
+          <dt>范围</dt>
+          <dd>主视觉与海报</dd>
+        </div>
+      </dl>
+      <Sub>记录</Sub>
+      <div class="record">
+        <p><span>大众点评</span> <strong>4.9</strong></p>
+        <p><span>猫眼</span> <strong>9.2</strong></p>
+      </div>
+      <p class="fine">剧目对外可见的口碑记录。不另作奖项或票房陈述。</p>
+    </aside>
+  </div>
+  {
+    linked && (
+      <p class="edge case-more">
+        <a class="more" href="/work/crazy-barbershop/">
+          看这一场<span class="sr-only">：疯狂理发店</span>
+        </a>
+      </p>
+    )
+  }
+</section>

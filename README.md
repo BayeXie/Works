@@ -46,7 +46,7 @@ npm run preview
 
 ## 字体与图片
 
-正文字体与标题字体已按页面用字子集化，放在 `public/fonts/`。Noto Serif SC、Noto Sans SC、Instrument Serif、Outfit 均为 SIL Open Font License，许可证见 `public/fonts/OFL.txt`。
+字体已按页面用字子集化，放在 `public/fonts/`。Noto Serif SC 负责中文展示（姓名、作品名、章节标题），Noto Sans SC 负责正文、导航、说明和按钮，Outfit 负责英文、序号和口碑数字。Instrument Serif 的文件仍随许可证留在目录里，页面不再使用。四款均为 SIL Open Font License，许可证见 `public/fonts/OFL.txt`。
 
 图片源文件经过压缩后放在 `src/assets/images/`。构建时由 Astro 输出 AVIF、WebP 和回退格式，并带上 `srcset`。首屏以下的图片懒加载。
 

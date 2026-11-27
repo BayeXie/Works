@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Frame from '../../components/Frame.astro';
+import CaseAndu from '../../components/CaseAndu.astro';
 import Pager from '../../components/Pager.astro';
-import still from '../../assets/images/andu.jpg';
 
 const title = '暗渡 · 谢兆明';
 const description =
@@ -20,72 +19,15 @@ const work = {
 
 <BaseLayout title={title} description={description} ogType="article" jsonLd={work}>
   <main id="main" tabindex="-1">
-    <header class="wrap case-head">
-      <nav class="crumb" aria-label="面包屑">
+    <CaseAndu heading="h1" priority>
+      <nav slot="crumb" class="crumb" aria-label="面包屑">
         <ol>
           <li><a href="/">首页</a> <span aria-hidden="true">/</span></li>
           <li><a href="/work/">作品</a> <span aria-hidden="true">/</span></li>
           <li aria-current="page">暗渡</li>
         </ol>
       </nav>
-      <p class="eyebrow">作品 03 · 短剧</p>
-      <h1>暗渡</h1>
-      <p class="case-en" lang="en">The Hidden Gambit</p>
-      <p class="case-lede">
-        一部已经公开的短剧。我的职责收在海报与战役的美术指导：让一张主视觉独立承担传播。
-      </p>
-    </header>
-
-    <div class="full-still">
-      <Frame
-        src={still}
-        alt="短剧《暗渡》主视觉。左侧是白色书法剧名、英文 The Hidden Gambit 与一位女性角色；右侧用斜切拼贴叠放数位人物。海报写有 9月24日上线，以及央视网、红果、抖音。"
-        widths={[640, 1100, 1600, 2200]}
-        sizes="100vw"
-        priority
-        caption="主视觉海报"
-      />
-    </div>
-
-    <div class="wrap case-grid">
-      <div class="prose">
-        <h2>方向</h2>
-        <p>
-          画面分成两半。一边是剧名和档期，人物从暗处看过来；另一边用斜切把几张脸叠成一条视线，衣领、耳机和尘土留下时代质地。竖排的「向死而生」把两边缝在一起。
-        </p>
-        <p>上线信息写进海报结构里，而不是事后贴上的条。一张画面要能单独被转发，也要还能被当作正片的门。</p>
-        <h2>边界</h2>
-        <p>
-          海报自署为 AI 微短剧。我的工作在视觉接触点，不在模型，也不把职务扩大到全剧主创。
-        </p>
-      </div>
-      <aside class="case-aside">
-        <h2>署名</h2>
-        <dl class="credits">
-          <div>
-            <dt>项目</dt>
-            <dd>短剧《暗渡》</dd>
-          </div>
-          <div>
-            <dt>职责</dt>
-            <dd>海报与战役美术指导</dd>
-          </div>
-          <div>
-            <dt>档期</dt>
-            <dd>海报所署 9月24日</dd>
-          </div>
-          <div>
-            <dt>平台</dt>
-            <dd>央视网、红果、抖音</dd>
-          </div>
-          <div>
-            <dt>范围</dt>
-            <dd>主视觉 / 海报</dd>
-          </div>
-        </dl>
-        <p class="fine">档期与平台写在海报上。</p>
-      </aside>
-    </div>
+    </CaseAndu>
     <Pager slug="andu" />
   </main>
 </BaseLayout>

@@ -1,32 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Frame from '../components/Frame.astro';
-import { cases, site } from '../data/site';
+import WorkIndex from '../components/WorkIndex.astro';
+import CaseBarber from '../components/CaseBarber.astro';
+import CaseXingdong from '../components/CaseXingdong.astro';
+import CaseAndu from '../components/CaseAndu.astro';
+import { site } from '../data/site';
 import head from '../assets/images/head-mark.jpg';
-import barber from '../assets/images/barber-asong.jpg';
-import xingdong from '../assets/images/xingdong-kv.jpg';
-import andu from '../assets/images/andu.jpg';
-
-const images = {
-  'crazy-barbershop': {
-    src: barber,
-    alt: '开心麻花《疯狂理发店》角色海报：张淞饰演阿淞，灰色西装，举起一只巨大的铜喇叭，站在棋盘地面上。',
-    widths: [480, 800, 1100, 1400],
-    sizes: '(min-width: 880px) 48vw, 92vw',
-  },
-  'xingdong-global': {
-    src: xingdong,
-    alt: '兴业银行「兴动全球」主视觉：打开的蓝色行李箱里是微缩旅行场景，四周漂着写有返现比例的气球。',
-    widths: [480, 720, 1080],
-    sizes: '(min-width: 880px) 42vw, 86vw',
-  },
-  andu: {
-    src: andu,
-    alt: '短剧《暗渡》主视觉海报：左侧是剧名书法与人物，右侧以斜切画面叠放角色，并标有上线信息。',
-    widths: [640, 1100, 1600, 2200],
-    sizes: '(min-width: 880px) 52vw, 92vw',
-  },
-} as const;
 
 const person = {
   '@type': 'Person',
@@ -44,85 +24,40 @@ const person = {
 
 <BaseLayout title={`${site.name} · ${site.role}`} description={site.description} jsonLd={person}>
   <main id="main" tabindex="-1">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
-        <p class="hero-en" lang="en">{site.roleEn}</p>
-        <h1 id="hero-title">{site.name}</h1>
-        <p class="hero-role">{site.role}</p>
-        <p class="hero-lede">
-          以影像与视觉系统，<br />把一场战役从概念做到<br />可被触碰的接触点。
-        </p>
+    <section class="opening" aria-labelledby="hero-title">
+      <div class="opening-id">
+        <h1 id="hero-title" class="opening-name">{site.name}</h1>
+        <p class="opening-role">{site.role}</p>
       </div>
-      <div class="wrap reel">
-        <nav aria-label="三场战役">
-          <ol>
-            {
-              cases.map((item) => (
-                <li>
-                  <a href={item.href}>
-                    <span class="num">{item.index}</span>
-                    <strong>{item.title}</strong>
-                    <span>
-                      {item.client} · {item.kind}
-                    </span>
-                  </a>
-                </li>
-              ))
-            }
-          </ol>
-        </nav>
-      </div>
+      <p class="opening-lede">
+        以影像与视觉系统，<br />把一场战役从概念做到<br />可被触碰的接触点。
+      </p>
     </section>
 
-    <section class="wrap mark" aria-labelledby="mark-title">
-      <div>
-        <p class="eyebrow">开场</p>
-        <h2 id="mark-title">一枚签名</h2>
-        <p>
-          这不是客户的战役。只是开场的一枚签名：有些概念要先裂开一道缝，才拿得出来给人看。
-        </p>
-      </div>
+    <section class="head-still" aria-labelledby="mark-title">
+      <h2 id="mark-title" class="sr-only">个人签名影像</h2>
       <Frame
-        class="plate"
         src={head}
         alt="黑色头像雕塑，颅顶裂开，云与虹彩从裂缝中涌出，碎片悬浮四周。个人签名影像。"
         widths={[480, 800, 1200]}
-        sizes="(min-width: 880px) 52vw, 92vw"
-        caption="个人签名影像"
+        sizes="100vw"
+        focus="50% 38%"
+        fill
       />
     </section>
 
-    <section class="chapters" aria-label="作品">
-      {
-        cases.map((item, index) => {
-          const image = images[item.slug];
-          return (
-            <article class:list={['chapter', 'wrap', { 'is-flip': index === 1 }]}>
-              <div class="chapter-media">
-                <Frame src={image.src} alt={image.alt} widths={[...image.widths]} sizes={image.sizes} />
-              </div>
-              <div class="chapter-copy">
-                <p class="num" aria-hidden="true">
-                  {item.index}
-                </p>
-                <p class="eyebrow">
-                  {item.client} · {item.kind}
-                </p>
-                <h2>
-                  <a href={item.href}>{item.title}</a>
-                </h2>
-                <p class="chapter-line">{item.line}</p>
-                <a class="more" href={item.href}>
-                  看这一场<span class="sr-only">：{item.title}</span>
-                </a>
-              </div>
-            </article>
-          );
-        })
-      }
+    <section class="index-block edge" aria-labelledby="index-title">
+      <h2 id="index-title" class="index-label">作品</h2>
+      <nav aria-label="三场战役">
+        <WorkIndex />
+      </nav>
     </section>
 
-    <section class="wrap close" aria-labelledby="close-title">
+    <CaseBarber linked />
+    <CaseXingdong linked />
+    <CaseAndu linked />
+
+    <section class="close edge" aria-labelledby="close-title">
       <h2 id="close-title">合作</h2>
       <p>看完三场，如果方向对上了，可以写一封工作邀约。</p>
       <ul class="close-links">
