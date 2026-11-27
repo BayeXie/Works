@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bayexie.github.io/sitemap-index.xml
+Sitemap: https://bayexie.github.io/Works/sitemap-index.xml

@@ -1,5 +1,6 @@
 ---
 import { type CaseSlug, nextCase } from '../data/site';
+import { href } from '../lib/path';
 
 interface Props {
   slug: CaseSlug;
@@ -13,5 +14,5 @@ const next = nextCase(Astro.props.slug);
     <span class="pager-kicker eyebrow">下一场</span>
     <span class="pager-title">{next.title}</span>
   </a>
-  <a class="pager-all" href="/work/">全部作品</a>
+  <a class="pager-all" href={href('/work/')}>全部作品</a>
 </nav>

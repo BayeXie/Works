@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Replace `site` with the production origin before launch.
-// Canonical URLs, Open Graph, and the sitemap all use this value.
+// GitHub Pages project site: https://bayexie.github.io/Works/
+// With trailingSlash "always", base keeps the trailing slash.
 export default defineConfig({
   site: 'https://bayexie.github.io',
+  base: '/Works/',
   trailingSlash: 'always',
   integrations: [sitemap()],
   prefetch: {

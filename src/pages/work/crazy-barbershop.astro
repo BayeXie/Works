@@ -1,9 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Frame from '../../components/Frame.astro';
+import CaseBarber from '../../components/CaseBarber.astro';
 import Pager from '../../components/Pager.astro';
-import tony from '../../assets/images/barber-tony.jpg';
-import asong from '../../assets/images/barber-asong.jpg';
+import { href } from '../../lib/path';
 
 const title = '疯狂理发店 · 谢兆明';
 const description =
@@ -21,79 +20,15 @@ const work = {
 
 <BaseLayout title={title} description={description} ogType="article" jsonLd={work}>
   <main id="main" tabindex="-1">
-    <header class="wrap case-head">
-      <nav class="crumb" aria-label="面包屑">
+    <CaseBarber heading="h1" priority>
+      <nav slot="crumb" class="crumb" aria-label="面包屑">
         <ol>
-          <li><a href="/">首页</a> <span aria-hidden="true">/</span></li>
-          <li><a href="/work/">作品</a> <span aria-hidden="true">/</span></li>
+          <li><a href={href('/')}>首页</a> <span aria-hidden="true">/</span></li>
+          <li><a href={href('/work/')}>作品</a> <span aria-hidden="true">/</span></li>
           <li aria-current="page">疯狂理发店</li>
         </ol>
       </nav>
-      <p class="eyebrow">作品 01 · 开心麻花</p>
-      <h1>疯狂理发店</h1>
-      <p class="case-lede">
-        一家理发店被写成喜剧。我的工作不是导演这出戏，而是让每个角色离开舞台之后，仍然能单独站住。
-      </p>
-    </header>
-
-    <div class="stage">
-      <div class="wrap poster-row">
-        <Frame
-          src={tony}
-          alt="《疯狂理发店》角色海报。冯康杰饰演 Tony，绿衫与背带短裤，手持超大金色剪刀，背景是红砖墙、理发椅和棋盘地面。右侧铜框内竖排演员姓名。"
-          widths={[480, 720, 1000, 1400]}
-          sizes="(min-width: 880px) 36vw, 88vw"
-          priority
-          caption="角色海报 · 冯康杰 饰 Tony"
-        />
-        <Frame
-          src={asong}
-          alt="《疯狂理发店》角色海报。张淞饰演阿淞，灰色西装，手持巨大铜喇叭，背景是红墙、木砖与棋盘地面。右侧铜框内竖排演员姓名。"
-          widths={[480, 720, 1000, 1400]}
-          sizes="(min-width: 880px) 36vw, 88vw"
-          caption="角色海报 · 张淞 饰 阿淞"
-        />
-      </div>
-    </div>
-
-    <div class="wrap case-grid">
-      <div class="prose">
-        <h2>方向</h2>
-        <p>
-          角色海报共用一套店面语法：棋盘地面、暖砖、铜框，以及大过日常的道具。剪刀和喇叭把人从演员变成招贴。两张海报可以分开传播，拼在一起仍是同一家店。
-        </p>
-        <p>名字竖排在铜边里，像戏单，也像贴在街角的卡司板。系统先于单张画面的花样。</p>
-        <h2>接触点</h2>
-        <p>主视觉与角色海报。这场战役的判断，落在这些可以被贴上墙、被单独转发的画面上。</p>
-      </div>
-      <aside class="case-aside">
-        <h2>署名</h2>
-        <dl class="credits">
-          <div>
-            <dt>委托</dt>
-            <dd>开心麻花</dd>
-          </div>
-          <div>
-            <dt>项目</dt>
-            <dd>舞台剧《疯狂理发店》</dd>
-          </div>
-          <div>
-            <dt>职责</dt>
-            <dd>战役与视觉指导</dd>
-          </div>
-          <div>
-            <dt>范围</dt>
-            <dd>主视觉与海报</dd>
-          </div>
-        </dl>
-        <h2>记录</h2>
-        <div class="record">
-          <p><span>大众点评</span> <strong>4.9</strong></p>
-          <p><span>猫眼</span> <strong>9.2</strong></p>
-        </div>
-        <p class="fine">剧目对外可见的口碑记录。不另作奖项或票房陈述。</p>
-      </aside>
-    </div>
+    </CaseBarber>
     <Pager slug="crazy-barbershop" />
   </main>
 </BaseLayout>

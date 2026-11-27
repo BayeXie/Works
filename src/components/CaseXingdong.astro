@@ -1,0 +1,102 @@
+---
+import Frame from './Frame.astro';
+import { href } from '../lib/path';
+import kv from '../assets/images/xingdong-kv.jpg';
+import year from '../assets/images/xingdong-newyear.jpg';
+import card from '../assets/images/xplus-card.jpg';
+
+interface Props {
+  heading?: 'h1' | 'h2';
+  linked?: boolean;
+  priority?: boolean;
+}
+
+const { heading = 'h2', linked = false, priority = false } = Astro.props;
+const Tag = heading;
+const Sub = heading === 'h1' ? 'h2' : 'h3';
+---
+
+<section class="case case-system" aria-labelledby="xingdong-title">
+  <div class="case-opener case-opener-system">
+    <slot name="crumb" />
+    <p class="meta">
+      <span class="num">02</span>
+      <span>兴业银行 · 兴业生活</span>
+    </p>
+    <Tag id="xingdong-title" class="display-title display-title-system">
+      {linked ? <a href={href('/work/xingdong-global/')}>兴动全球</a> : '兴动全球'}
+    </Tag>
+    <p class="case-lede">
+      境外消费返现，<br />很容易做成一张利率表。<br />这套视觉把它做成<br />一个可以走进去的世界。
+    </p>
+  </div>
+
+  <ol class="system-rows edge">
+    <li class="system-row">
+      <span class="num">01</span>
+      <Sub class="system-label">主视觉</Sub>
+      <div class="system-body">
+        <Frame
+          src={kv}
+          alt="兴业银行「兴动全球」主视觉海报。打开的蓝色行李箱里有沙滩、帆船、埃菲尔铁塔和相机，周围是写着返现比例的气球。画面有兴业生活与兴业银行标识。"
+          widths={[480, 720, 1080]}
+          sizes="(min-width: 800px) 58vw, 92vw"
+          focus="50% 40%"
+          ratio="4 / 5"
+          priority={priority}
+        />
+        <p>行李箱打开成一座小剧场。沙滩、帆船、铁塔和返现气球站在同一个地面上。数字进了世界，而不是贴在角落。</p>
+      </div>
+    </li>
+    <li class="system-row">
+      <span class="num">02</span>
+      <Sub class="system-label">系列画面</Sub>
+      <div class="system-body">
+        <Frame
+          src={year}
+          alt="「兴动全球」系列海报。新年机舱内，一家三口望向窗外的境外城市，暖色灯笼与返现卡片环绕，下方是兴动全球标识与活动说明。"
+          widths={[480, 720, 1080]}
+          sizes="(min-width: 800px) 58vw, 92vw"
+          focus="50% 46%"
+          ratio="4 / 5"
+        />
+        <p>系列画面沿同一条航线换季节。新年的机舱仍然把落点放回「兴动全球」：人在旅途里，福利和目的地在同一扇窗后。</p>
+      </div>
+    </li>
+    <li class="system-row">
+      <span class="num">03</span>
+      <Sub class="system-label">关键讯息</Sub>
+      <div class="system-body">
+        <p class="system-display">
+          数字进了世界，<br />而不是<br />贴在角落。
+        </p>
+        <p>识别先于单张气氛。主视觉、系列画面和青年卡共用一套世界，各自说各自的事。</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="system-extend edge">
+    <p class="meta">
+      <span class="num">+</span>
+      <span>延伸</span>
+    </p>
+    <p class="system-extend-line">同一视觉体系的延伸，并非同一场优惠。</p>
+    <Frame
+      src={card}
+      alt="兴业银行 X+ 青年信用卡主视觉。长颈鹿与斑马在山野间奔跑，旁边是两张印有同一角色的无界卡，标题为青春有 X 种可能。这是同一视觉体系的延伸，并非同一场优惠。"
+      widths={[640, 1100, 1600, 1920]}
+      sizes="100vw"
+      focus="50% 40%"
+      ratio="16 / 7.2"
+    />
+  </div>
+  {
+    linked && (
+      <p class="edge case-more">
+        <a class="more" href={href('/work/xingdong-global/')}>
+          看这一场<span class="sr-only">：兴动全球</span>
+        </a>
+      </p>
+    )
+  }
+</section>

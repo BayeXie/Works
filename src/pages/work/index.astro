@@ -1,68 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Frame from '../../components/Frame.astro';
-import { cases } from '../../data/site';
-import barber from '../../assets/images/barber-tony.jpg';
-import xingdong from '../../assets/images/xingdong-kv.jpg';
-import andu from '../../assets/images/andu.jpg';
+import WorkIndex from '../../components/WorkIndex.astro';
 
 const description =
   '三场战役：开心麻花《疯狂理发店》、兴业银行「兴动全球」、短剧《暗渡》。每场只谈视觉怎样把概念变成接触点。';
-
-const images = {
-  'crazy-barbershop': {
-    src: barber,
-    alt: '开心麻花《疯狂理发店》角色海报：冯康杰饰演 Tony，手持一把超大的金色剪刀，站在棋盘地面与砖墙前。',
-    widths: [480, 800, 1100, 1400],
-  },
-  'xingdong-global': {
-    src: xingdong,
-    alt: '兴业银行「兴动全球」主视觉：打开的蓝色行李箱里是微缩旅行场景，四周漂着写有返现比例的气球。',
-    widths: [480, 720, 1080],
-  },
-  andu: {
-    src: andu,
-    alt: '短剧《暗渡》主视觉海报：左侧是剧名书法与人物，右侧以斜切画面叠放角色，并标有上线信息。',
-    widths: [640, 1100, 1600, 2200],
-  },
-} as const;
 ---
 
 <BaseLayout title="作品 · 谢兆明" description={description}>
   <main id="main" tabindex="-1">
-    <header class="wrap page-intro">
-      <p class="eyebrow">作品</p>
+    <header class="page-intro edge">
+      <p class="meta">作品</p>
       <h1>三场战役</h1>
       <p class="lede">每场只谈一件事：视觉怎样把概念变成可以触碰的接触点。</p>
     </header>
-    <div class="wrap">
-      {
-        cases.map((item, index) => {
-          const image = images[item.slug];
-          return (
-            <article class="catalog-item">
-              <Frame
-                src={image.src}
-                alt={image.alt}
-                widths={[...image.widths]}
-                sizes="(min-width: 880px) 52vw, 92vw"
-                priority={index === 0}
-              />
-              <a class="catalog-copy" href={item.href}>
-                <p class="num" aria-hidden="true">
-                  {item.index}
-                </p>
-                <h2>{item.title}</h2>
-                <p class="catalog-meta">
-                  {item.client} · {item.kind}
-                </p>
-                <p class="catalog-line">{item.line}</p>
-                <p class="more">看这一场</p>
-              </a>
-            </article>
-          );
-        })
-      }
+    <div class="edge catalog">
+      <WorkIndex lines asHeading />
     </div>
   </main>
 </BaseLayout>

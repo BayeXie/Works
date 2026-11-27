@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import { href } from '../lib/path';
 ---
 
 <footer class="site-footer">
@@ -11,9 +12,9 @@ import { site } from '../data/site';
       <p>© 2026</p>
     </div>
     <nav class="footer-nav" aria-label="页脚">
-      <a href="/work/">作品</a>
-      <a href="/about/">关于</a>
-      <a href="/contact/">联系</a>
+      <a href={href('/work/')}>作品</a>
+      <a href={href('/about/')}>关于</a>
+      <a href={href('/contact/')}>联系</a>
     </nav>
   </div>
 </footer>

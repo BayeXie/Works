@@ -10,26 +10,50 @@ interface Props {
   priority?: boolean;
   caption?: string;
   class?: string;
+  /** object-position. Enables a cropped frame together with `ratio` or `fill`. */
+  focus?: string;
+  /** CSS aspect-ratio for the crop window, for example "3 / 4". */
+  ratio?: string;
+  /** Stretch the crop to the parent's height. */
+  fill?: boolean;
 }
 
-const { src, alt, widths, sizes, priority = false, caption, class: className } = Astro.props;
+const {
+  src,
+  alt,
+  widths,
+  sizes,
+  priority = false,
+  caption,
+  class: className,
+  focus,
+  ratio,
+  fill = false,
+} = Astro.props;
+
+const cropping = Boolean(focus || ratio || fill);
 const finalWidths = [...new Set([...widths.filter((width) => width < src.width), src.width])].sort(
   (a, b) => a - b,
 );
+const style = [focus ? `--focus: ${focus}` : '', ratio ? `--frame-ratio: ${ratio}` : '']
+  .filter(Boolean)
+  .join(';');
 ---
 
-<figure class:list={['frame', className]}>
-  <Picture
-    src={src}
-    alt={alt}
-    widths={finalWidths}
-    sizes={sizes}
-    formats={['avif', 'webp']}
-    quality={82}
-    loading={priority ? 'eager' : 'lazy'}
-    decoding="async"
-    fetchpriority={priority ? 'high' : 'auto'}
-    style={`aspect-ratio: ${src.width} / ${src.height};`}
-  />
+<figure class:list={['frame', className, { 'is-crop': cropping, 'is-fill': fill }]} style={style || undefined}>
+  <div class="crop-media">
+    <Picture
+      src={src}
+      alt={alt}
+      widths={finalWidths}
+      sizes={sizes}
+      formats={['avif', 'webp']}
+      quality={82}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding="async"
+      fetchpriority={priority ? 'high' : 'auto'}
+      style={cropping ? undefined : `aspect-ratio: ${src.width} / ${src.height};`}
+    />
+  </div>
   {caption && <figcaption>{caption}</figcaption>}
 </figure>

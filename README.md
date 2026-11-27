@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-开发服务器默认在 `http://localhost:4321`。
+开发服务器默认在 `http://localhost:4321/Works/`。
 
 构建与预览：
 
@@ -24,9 +24,9 @@ npm run preview
 
 构建结果在 `dist/`。把它交给任何静态托管即可。
 
-## 上线前
+## 上线
 
-`astro.config.mjs` 里的 `site` 目前是占位来源 `https://bayexie.github.io`。换成正式域名后再构建，这样规范链接、Open Graph 和站点地图才会指向正确地址。`public/robots.txt` 里的 Sitemap 地址也要一起改。
+站点发布在 GitHub Pages 项目页：`https://bayexie.github.io/Works/`。`astro.config.mjs` 的 `site` 是 `https://bayexie.github.io`，`base` 是 `/Works/`。推送到 `main` 后，`.github/workflows/pages.yml` 会构建并发布。仓库公开和开启 Pages 在仓库设置里完成。
 
 ## 页面
 
@@ -46,7 +46,7 @@ npm run preview
 
 ## 字体与图片
 
-正文字体与标题字体已按页面用字子集化，放在 `public/fonts/`。Noto Serif SC、Noto Sans SC、Instrument Serif、Outfit 均为 SIL Open Font License，许可证见 `public/fonts/OFL.txt`。
+字体已按页面用字子集化，放在 `public/fonts/`。Noto Serif SC 负责中文展示（姓名、作品名、章节标题），Noto Sans SC 负责正文、导航、说明和按钮，Outfit 负责英文、序号和口碑数字。Instrument Serif 的文件仍随许可证留在目录里，页面不再使用。四款均为 SIL Open Font License，许可证见 `public/fonts/OFL.txt`。
 
 图片源文件经过压缩后放在 `src/assets/images/`。构建时由 Astro 输出 AVIF、WebP 和回退格式，并带上 `srcset`。首屏以下的图片懒加载。
 

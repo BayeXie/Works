@@ -1,0 +1,31 @@
+---
+import { cases } from '../data/site';
+
+interface Props {
+  lines?: boolean;
+  asHeading?: boolean;
+}
+
+const { lines = false, asHeading = false } = Astro.props;
+---
+
+<ol class="type-index">
+  {
+    cases.map((item) => (
+      <li class:list={[{ 'is-quiet': item.index === '02' }]}>
+        <a href={item.href}>
+          <span class="num">{item.index}</span>
+          {asHeading ? (
+            <h2 class="type-index-title">{item.title}</h2>
+          ) : (
+            <span class="type-index-title">{item.title}</span>
+          )}
+          <span class="type-index-meta">
+            {item.client} · {item.kind}
+          </span>
+          {lines && <span class="type-index-line">{item.line}</span>}
+        </a>
+      </li>
+    ))
+  }
+</ol>

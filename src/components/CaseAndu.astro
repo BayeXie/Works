@@ -1,0 +1,75 @@
+---
+import Frame from './Frame.astro';
+import { href } from '../lib/path';
+import still from '../assets/images/andu.jpg';
+
+interface Props {
+  heading?: 'h1' | 'h2';
+  linked?: boolean;
+  priority?: boolean;
+}
+
+const { heading = 'h2', linked = false, priority = false } = Astro.props;
+const Tag = heading;
+const Sub = heading === 'h1' ? 'h2' : 'h3';
+---
+
+<section class="case case-film" aria-labelledby="andu-title">
+  <div class="film-layout">
+    <div class="film-still">
+      <Frame
+        src={still}
+        alt="短剧《暗渡》主视觉。左侧是白色书法剧名、英文 The Hidden Gambit 与一位女性角色；右侧用斜切拼贴叠放数位人物。海报写有 9月24日上线，以及央视网、红果、抖音。"
+        widths={[640, 1100, 1600, 2200]}
+        sizes="(min-width: 960px) 64vw, 100vw"
+        focus="74% 46%"
+        fill
+        priority={priority}
+      />
+    </div>
+    <div class="film-copy">
+      <slot name="crumb" />
+      <p class="meta">
+        <span class="num">03</span>
+        <span>短剧 · 海报</span>
+      </p>
+      <Tag id="andu-title" class="display-title display-title-film">
+        {linked ? <a href={href('/work/andu/')}>暗渡</a> : '暗渡'}
+      </Tag>
+      <p class="poster-latin-label">海报原文</p>
+      <p class="poster-latin" lang="en">The Hidden Gambit</p>
+      <Sub class="sr-only">署名</Sub>
+      <dl class="credits">
+        <div>
+          <dt>职责</dt>
+          <dd>海报与战役美术指导</dd>
+        </div>
+        <div>
+          <dt>档期</dt>
+          <dd>海报所署 9月24日</dd>
+        </div>
+        <div>
+          <dt>平台</dt>
+          <dd>央视网、红果、抖音</dd>
+        </div>
+        <div>
+          <dt>范围</dt>
+          <dd>主视觉 / 海报</dd>
+        </div>
+      </dl>
+      <p class="film-note">
+        一张主视觉承担传播。人物用斜切叠成一条视线，档期写进海报结构里。海报自署为 AI 微短剧；职责停在海报与战役美术指导。
+      </p>
+      <p class="fine">档期与平台写在海报上。</p>
+      {
+        linked && (
+          <p class="case-more">
+            <a class="more" href={href('/work/andu/')}>
+              看这一场<span class="sr-only">：暗渡</span>
+            </a>
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>

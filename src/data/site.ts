@@ -1,3 +1,5 @@
+import { href } from '../lib/path';
+
 export const site = {
   name: '谢兆明',
   nameEn: 'Xie Zhaoming',
@@ -16,7 +18,7 @@ export const cases = [
     client: '开心麻花',
     kind: '舞台剧',
     line: '把喜剧角色收成可以单独传播的海报。棋盘地面、铜框、被放大的道具，仍是同一家店。',
-    href: '/work/crazy-barbershop/',
+    href: href('/work/crazy-barbershop/'),
   },
   {
     slug: 'xingdong-global',
@@ -24,8 +26,8 @@ export const cases = [
     title: '兴动全球',
     client: '兴业银行',
     kind: '兴业生活',
-    line: '境外返现被做成一个可以走进去的世界，而不是一张利率表。',
-    href: '/work/xingdong-global/',
+    line: '境外返现被做成一个可以走进去的世界，而不是一张利\u2060率\u2060表。',
+    href: href('/work/xingdong-global/'),
   },
   {
     slug: 'andu',
@@ -34,7 +36,7 @@ export const cases = [
     client: '短剧',
     kind: '海报',
     line: '一张主视觉承担传播。人物、档期和时代质地压在同一块画面里。',
-    href: '/work/andu/',
+    href: href('/work/andu/'),
   },
 ] as const;
 

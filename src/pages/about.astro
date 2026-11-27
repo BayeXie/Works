@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Frame from '../components/Frame.astro';
 import work from '../assets/images/portrait-work.jpg';
-import formal from '../assets/images/portrait-formal.png';
+import { absolute, href } from '../lib/path';
 
 const description =
   '关于谢兆明，创意总监。从南京艺术学院影视动画出发，经睿宏、天蛙、狮迈，到 MCN 设计组长。一条把画面做成战役方向的路径。';
@@ -14,38 +14,39 @@ const person = {
   jobTitle: '创意总监',
   description: '以影像与视觉系统，把一场战役从概念做到可被触碰的接触点。',
   alumniOf: { '@type': 'CollegeOrUniversity', name: '南京艺术学院' },
-  url: new URL('/about/', Astro.site).href,
+  url: absolute('/about/'),
 };
 ---
 
 <BaseLayout title="关于 · 谢兆明" description={description} jsonLd={person}>
   <main id="main" tabindex="-1">
-    <header class="wrap about-lead">
-      <p class="eyebrow">关于</p>
-      <h1>谢兆明</h1>
-      <p class="about-statement">
-        先决定一场战役要被人怎样看见，再把概念做成接触点。
-      </p>
-    </header>
-
-    <section class="wrap about-plate" aria-labelledby="portrait-title">
+    <section class="about-open" aria-labelledby="about-title">
+      <div class="about-copy">
+        <p class="meta">关于</p>
+        <p class="about-who">
+          <span>谢兆明</span>
+          <span>创意总监</span>
+        </p>
+        <h1 id="about-title">
+          先决定一场战役<br />要被人怎样看见，<br />再把概念做成接触点。
+        </h1>
+        <p class="about-bio">
+          他从影视动画开始学画面，之后在商业项目、与朋友合办的公司、创意热店和内容团队里，把同一件事做深：视觉方向。现在以此接新的合作。
+        </p>
+      </div>
       <Frame
+        class="about-still"
         src={work}
         alt="谢兆明站在浅色墙前，穿黑色上衣，双手插在口袋里，看向镜头。"
         widths={[480, 800, 1200, 1600]}
-        sizes="(min-width: 880px) 46vw, 92vw"
+        sizes="(min-width: 880px) 54vw, 100vw"
+        focus="50% 18%"
+        fill
         priority
       />
-      <div>
-        <h2 id="portrait-title" class="sr-only">肖像与路径</h2>
-        <p>
-          他从影视动画开始学画面，之后在商业项目、与朋友合办的公司、创意热店和内容团队里，把同一件事做深：视觉方向。现在以此接新的合作。
-        </p>
-        <p class="follow">下面是一条路径，不是职务清单。</p>
-      </div>
     </section>
 
-    <section class="wrap" aria-labelledby="path-title">
+    <section class="edge" aria-labelledby="path-title">
       <div class="path">
         <h2 id="path-title">路径</h2>
         <p class="path-intro">一条往前的路径，不是职务堆砌。</p>
@@ -97,24 +98,13 @@ const person = {
       </div>
     </section>
 
-    <section class="presence" aria-labelledby="now-title">
-      <div class="wrap presence-grid">
-        <div>
-          <h2 id="now-title">现在</h2>
-          <p>这一段已在 2026 年 10 月结束。目前以创意总监的身份看新的合作。</p>
-          <ul class="close-links">
-            <li><a href="/work/">看作品</a></li>
-            <li><a href="/contact/">工作邀约</a></li>
-          </ul>
-        </div>
-        <Frame
-          src={formal}
-          alt="谢兆明的肖像：白衬衫、深色领结，置于深色背景中。"
-          widths={[480, 800, 1200, 1400]}
-          sizes="(min-width: 880px) 36vw, 80vw"
-          caption="肖像"
-        />
-      </div>
+    <section class="now edge" aria-labelledby="now-title">
+      <h2 id="now-title">现在</h2>
+      <p>这一段已在 2026 年 10 月结束。目前以创意总监的身份看新的合作。</p>
+      <ul class="close-links">
+        <li><a href={href('/work/')}>看作品</a></li>
+        <li><a href={href('/contact/')}>工作邀约</a></li>
+      </ul>
     </section>
   </main>
 </BaseLayout>
