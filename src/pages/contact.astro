@@ -17,14 +17,14 @@ const description =
       </p>
     </header>
     <div class="contact-board edge">
-      <div class="contact-notes">
-        <p>本站不公布电话、<br />邮箱或即时通讯账号。</p>
-        <p>渠道在正式合作前另行确认。</p>
-        <p>下面的文字不会离开这台设备，<br />也不会进入任何收件箱。</p>
-        <p>生成之后，<br />用你自己的渠道发出即可。</p>
-      </div>
+      <div class="contact-sheet">
+        <div class="contact-notes">
+          <p>本站不公布电话、<span class="phrase">邮箱或即时通讯账号。</span></p>
+          <p>渠道在正式合作前另行确认。</p>
+          <p>下面的文字不会离开这台设备，<span class="phrase">也不会进入任何收件箱。</span></p>
+          <p>生成之后，<span class="phrase">用你自己的渠道发出即可。</span></p>
+        </div>
 
-      <div class="invite">
         <form id="invite" hidden onsubmit="return false">
           <div class="field">
             <label for="name">你的名字 <span class="req">必填</span></label>
@@ -51,8 +51,8 @@ const description =
           </div>
           <button class="button" type="button" id="invite-make">生成本地邀约</button>
         </form>
-        <div id="invite-result" class="letter" hidden tabindex="-1" aria-live="polite"></div>
       </div>
+      <div id="invite-result" class="letter" hidden tabindex="-1" aria-live="polite"></div>
       <noscript>
         <p class="contact-note">
           整理工具需要脚本，并且不会把内容发到任何服务器。脚本不可用时，请用你们已经确认的渠道直接发出邀约。
@@ -115,15 +115,41 @@ const description =
     result.replaceChildren();
 
     const heading = document.createElement('h2');
+    heading.id = 'invite-status';
     heading.textContent = '尚未发送';
 
-    const noteEl = document.createElement('p');
-    noteEl.className = 'letter-note';
-    noteEl.textContent = '下面这段只在这台设备上。复制之后，用你自己的渠道发出。本页不保存、不转发。';
+    const statusCopy = [
+      '下面这段只在这台设备上。',
+      '复制之后，用你自己的渠道发出。',
+      '本页不保存、不转发。',
+    ];
+    const notes = statusCopy.map((sentence) => {
+      const noteEl = document.createElement('p');
+      noteEl.className = 'letter-note';
+      noteEl.textContent = sentence;
+      return noteEl;
+    });
 
-    const body = document.createElement('pre');
-    body.tabIndex = 0;
-    body.textContent = text;
+    const title = document.createElement('h3');
+    title.className = 'letter-title';
+    title.textContent = '工作邀约';
+
+    const address = document.createElement('p');
+    address.className = 'letter-address';
+    address.textContent = `我是${name}${orgLine}。`;
+
+    const topicEl = document.createElement('p');
+    topicEl.className = 'letter-topic';
+    topicEl.textContent = `想谈的方向：${topic}。`;
+
+    const prose = document.createElement('p');
+    prose.className = 'letter-prose';
+    prose.tabIndex = 0;
+    prose.textContent = note;
+
+    const sign = document.createElement('p');
+    sign.className = 'letter-sign';
+    sign.textContent = '—— 写给谢兆明，创意总监';
 
     const copy = document.createElement('button');
     copy.type = 'button';
@@ -134,12 +160,23 @@ const description =
         await navigator.clipboard.writeText(text);
         copy.textContent = '已复制';
       } catch {
-        body.focus();
+        prose.focus();
         copy.textContent = '请手动选择并复制';
       }
     });
 
-    result.append(heading, noteEl, body, copy);
+    const status = document.createElement('div');
+    status.className = 'letter-status';
+    status.append(heading, ...notes);
+
+    const sheet = document.createElement('div');
+    sheet.className = 'letter-sheet';
+    sheet.append(title, address, topicEl, prose, sign, copy);
+
+    const layout = document.createElement('div');
+    layout.className = 'letter-layout';
+    layout.append(status, sheet);
+    result.append(layout);
     result.scrollIntoView({ block: 'nearest' });
     result.focus();
   });
